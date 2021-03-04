@@ -421,6 +421,11 @@ class CleverTapPlugin {
         'setLocation', {'latitude': latitude, 'longitude': longitude});
   }
 
+  static Future<void> getLocation(double latitude, double longitude) async {
+    return await _channel.invokeMethod(
+        'getLocation', {'latitude': latitude, 'longitude': longitude});
+  }
+
   /// Returns a unique CleverTap identifier suitable for use with install attribution providers.
   static Future<String> profileGetCleverTapAttributionIdentifier() async {
     return await _channel

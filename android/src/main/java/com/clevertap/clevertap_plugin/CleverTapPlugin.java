@@ -308,6 +308,10 @@ public class CleverTapPlugin implements ActivityAware,
                 setLocation(call, result);
                 break;
             }
+            case "getLocation": {
+                getLocation(call, result);
+                break;
+            }
             case "profileGetCleverTapAttributionIdentifier": {
                 profileGetCleverTapAttributionIdentifier(result);
                 break;
@@ -1542,6 +1546,20 @@ public class CleverTapPlugin implements ActivityAware,
             location.setLatitude(lat);
             location.setLongitude(lon);
             cleverTapAPI.setLocation(location);
+            result.success(null);
+        } else {
+            result.error(TAG, ERROR_MSG, null);
+        }
+    }
+
+    private void getLocation(MethodCall call, Result result) {
+        double lat = call.argument("latitude");
+        double lon = call.argument("longitude");
+        if (isCleverTapNotNull(cleverTapAPI)) {
+            Location location = new Location("CleverTapFlutter");
+            location.setLatitude(lat);
+            location.setLongitude(lon);
+            cleverTapAPI.getLocation(location);
             result.success(null);
         } else {
             result.error(TAG, ERROR_MSG, null);

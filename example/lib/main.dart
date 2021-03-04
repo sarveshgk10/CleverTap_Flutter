@@ -26,8 +26,7 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
     activateCleverTapFlutterPluginHandlers();
     CleverTapPlugin.setDebugLevel(3);
-    CleverTapPlugin.createNotificationChannel(
-        "fluttertest", "Flutter Test", "Flutter Test", 3, true);
+    CleverTapPlugin.createNotificationChannel("fluttertest", "Flutter Test", "Flutter Test", 3, true);
     CleverTapPlugin.initializeInbox();
     CleverTapPlugin.registerForPush(); //only for iOS
     //var initialUrl = CleverTapPlugin.getInitialUrl();
@@ -407,6 +406,17 @@ class _MyAppState extends State<MyApp> {
                       title: Text("Set Location"),
                       subtitle: Text("Use to set Location of a user"),
                       onTap: setLocation,
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.lightBlueAccent,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ListTile(
+                      title: Text("Get Location"),
+                      subtitle: Text("Use to get Location of a user"),
+                      onTap: getLocation,
                     ),
                   ),
                 ),
@@ -883,12 +893,12 @@ class _MyAppState extends State<MyApp> {
   void recordUser() {
     var stuff = ["bags", "shoes"];
     var profile = {
-      'Name': 'Thor',
+      'Name': 'sarvesh',
       'Identity': '100',
       'DOB': '22-04-2000',
 
       ///Key always has to be "DOB" and format should always be dd-MM-yyyy
-      'Email': 'thor1@asgard.com',
+      'Email': 'sarveshgk10@gmail.com',
       'Phone': '14155551234',
       'props': 'property1',
       'stuff': stuff
@@ -1161,6 +1171,13 @@ class _MyAppState extends State<MyApp> {
     var long = 72.87;
     CleverTapPlugin.setLocation(lat, long);
     showToast("Location is set");
+  }
+
+  void getLocation() {
+    var lat = 20.07;
+    var long = 71.87;
+    CleverTapPlugin.getLocation(lat, long);
+    showToast("Got the location");
   }
 
   void getCTAttributionId() {

@@ -120,6 +120,8 @@ static NSDateFormatter *dateFormatter;
         [self getEventHistory:call withResult:result];
     else if ([@"setLocation" isEqualToString:call.method])
         [self setLocation:call withResult:result];
+    else if ([@"getLocation" isEqualToString:call.method])
+           [self getLocation:call withResult:result];
     else if ([@"profileGetCleverTapAttributionIdentifier" isEqualToString:call.method])
         [self profileGetCleverTapAttributionIdentifier:call withResult:result];
     else if ([@"profileGetCleverTapID" isEqualToString:call.method])
@@ -433,6 +435,15 @@ static NSDateFormatter *dateFormatter;
     double lon = [call.arguments[@"longitude"] doubleValue];
     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat,lon);
     [[CleverTap sharedInstance] setLocation: coordinate];
+    result(nil);
+}
+
+- (void)getLocation:(FlutterMethodCall *)call withResult:(FlutterResult)result {
+
+    double lat = [call.arguments[@"latitude"] doubleValue];
+    double lon = [call.arguments[@"longitude"] doubleValue];
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat,lon);
+    [[CleverTap sharedInstance] getLocation: coordinate];
     result(nil);
 }
 
